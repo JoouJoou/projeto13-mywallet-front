@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import Context from "./Context/context";
+
+
 
 function App() {
+  const [token, setToken] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [balance, setBalance] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <Context.Provider
+        value={{
+          token,
+          setToken,
+          name,
+          setName,
+          password, 
+          setPassword,
+          balance,
+          setBalance
+        }}
+      >
+        <BrowserRouter>
+          <Routes>
+            
+          </Routes>
+        </BrowserRouter>
+      </Context.Provider>
+    </>
+  )
 }
 
 export default App;
