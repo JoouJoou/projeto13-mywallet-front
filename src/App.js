@@ -1,14 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Context from "./Context/context";
-
+import Login from "./Componentss/signin/login/Login";
+import Signup from "./Componentss/signin/register/Signup";
 
 
 function App() {
   const [token, setToken] = useState("");
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [balance, setBalance] = useState("");
 
   return (
     <>
@@ -16,17 +14,12 @@ function App() {
         value={{
           token,
           setToken,
-          name,
-          setName,
-          password, 
-          setPassword,
-          balance,
-          setBalance
         }}
       >
         <BrowserRouter>
           <Routes>
-            
+            <Route path="/" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
           </Routes>
         </BrowserRouter>
       </Context.Provider>
