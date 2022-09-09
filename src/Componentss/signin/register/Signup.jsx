@@ -17,7 +17,6 @@ export default function Signup () {
         console.log("mds")
         e.preventDefault()
         setDisable(true)
-        console.log({name, email, password})
 
         if (password === password2) {
             axios.post("http://localhost:5000/signup", {
@@ -25,7 +24,6 @@ export default function Signup () {
                 email,
                 password
             }).then((e) => {
-                console.log(e)
                 window.alert("Registrado com sucesso")
                 navigate("/")
             }).catch((err) => {

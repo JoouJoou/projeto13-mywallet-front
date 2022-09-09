@@ -4,9 +4,9 @@ import Context from "./Context/context";
 import Login from "./Componentss/signin/login/Login";
 import Signup from "./Componentss/signin/register/Signup";
 
-
 function App() {
   const [token, setToken] = useState("");
+  console.log(token);
 
   return (
     <>
@@ -24,7 +24,7 @@ function App() {
         </BrowserRouter>
       </Context.Provider>
     </>
-  )
+  );
 }
 
 export default App;
