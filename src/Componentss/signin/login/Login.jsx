@@ -7,7 +7,7 @@ import Context from "../../../Context/context";
 export default function Login() {
   const navigate = useNavigate();
 
-  const { setToken } = useContext(Context);
+  const { setToken, setName } = useContext(Context);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [disable, setDisable] = useState(false);
@@ -22,9 +22,9 @@ export default function Login() {
         password,
       })
       .then((e) => {
-        console.log(e);
-        setToken(e.data);
-        navigate("/");
+        setToken(e.data.token);
+        setName(e.data.name);
+        navigate("/home");
       })
       .catch((err) => {
         window.alert(err.response.data);
@@ -54,7 +54,9 @@ export default function Login() {
           }}
           required
         />
-        <button type="submit">Entrar</button>
+        <button type="submit" disabled={disable}>
+          Entrar
+        </button>
       </form>
       <h2 onClick={() => navigate("/signup")}>Primeira vez? Cadastre-se!</h2>
     </Container>
