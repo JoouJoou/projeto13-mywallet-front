@@ -5,14 +5,49 @@ import { useNavigate } from "react-router-dom";
 import Context from "../../../Context/context";
 
 export default function TransferIN() {
+  const navigate = useNavigate();
+
   const [value, setValue] = useState("");
+  const { token, email, setBalance } = useContext(Context);
   const [description, setDescription] = useState("");
   const [disable, setDisable] = useState(false);
+
+  function sendTransfer(e) {
+    e.preventDefault();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        id: email,
+      },
+    };
+
+    axios
+      .post(
+        "http://localhost:5000/transactions",
+        {
+          id: email,
+          value,
+          description,
+          type: "in",
+        },
+        config
+      )
+      .then((e) => {
+        setBalance(e.data);
+        console.log(typeof e.data);
+        navigate("/home");
+      })
+      .catch((err) => {
+        window.alert(err.response.data);
+        setDisable(false);
+      });
+  }
 
   return (
     <Container>
       <h2>Nova entrada</h2>
-      <form>
+      <form onSubmit={sendTransfer}>
         <input
           type="number"
           placeholder="Valor"

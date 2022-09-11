@@ -7,7 +7,15 @@ import Context from "../../../Context/context";
 export default function Login() {
   const navigate = useNavigate();
 
-  const { setToken, setName, email, setEmail } = useContext(Context);
+  const {
+    setToken,
+    token,
+    setName,
+    email,
+    setEmail,
+    setBalance,
+    setTransfers,
+  } = useContext(Context);
   const [password, setPassword] = useState("");
   const [disable, setDisable] = useState(false);
 
@@ -22,7 +30,9 @@ export default function Login() {
       })
       .then((e) => {
         setToken(e.data.token);
+        console.log(token);
         setName(e.data.name);
+        setBalance(e.data.balance);
         navigate("/home");
       })
       .catch((err) => {

@@ -11,7 +11,7 @@ function App() {
   const [token, setToken] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-
+  const [balance, setBalance] = useState("");
   return (
     <>
       <Context.Provider
@@ -22,6 +22,8 @@ function App() {
           setName,
           email,
           setEmail,
+          balance,
+          setBalance,
         }}
       >
         <BrowserRouter>

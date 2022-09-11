@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Context from "../../Context/context.js";
@@ -13,13 +13,20 @@ export default function Home() {
   const navigate = useNavigate();
   const { token, setToken, name, setName, email, setEmail } =
     useContext(Context);
-  let transfers = [
-    { value: 33.2, type: "out" },
-    { value: 50.2, type: "in" },
-    { balance: 29.53 },
-  ];
+  const [transfers, setTransfer] = useState([]);
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      id: email,
+    },
+  };
 
-  /* axios.get("http://localhost:5000/transactions"); */
+  useEffect(() => {
+    axios.get("http://localhost:5000/transactions", config).then((e) => {
+      setTransfer(e.data);
+      console.log(transfers);
+    });
+  }, []);
 
   return (
     <>
@@ -35,7 +42,11 @@ export default function Home() {
           }}
         ></img>
       </Header>
-      {transfers.length > 0 ? <Tranfers /> : <NoTranfers />}
+      {transfers.length > 0 ? (
+        <Tranfers transfers={transfers} />
+      ) : (
+        <NoTranfers />
+      )}
       <Footer>
         <button onClick={() => navigate("/newin")}>
           <img src={Plus} />
