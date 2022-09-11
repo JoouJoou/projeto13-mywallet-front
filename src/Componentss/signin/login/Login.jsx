@@ -7,15 +7,8 @@ import Context from "../../../Context/context";
 export default function Login() {
   const navigate = useNavigate();
 
-  const {
-    setToken,
-    token,
-    setName,
-    email,
-    setEmail,
-    setBalance,
-    setTransfers,
-  } = useContext(Context);
+  const { setToken, token, setName, email, setEmail, setBalance } =
+    useContext(Context);
   const [password, setPassword] = useState("");
   const [disable, setDisable] = useState(false);
 

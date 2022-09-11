@@ -1,6 +1,5 @@
+import { useContext } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
 
 import Context from "../../../Context/context";
 export default function Tranfers(props) {

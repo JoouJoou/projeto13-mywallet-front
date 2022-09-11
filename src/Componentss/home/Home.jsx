@@ -14,19 +14,19 @@ export default function Home() {
   const { token, setToken, name, setName, email, setEmail } =
     useContext(Context);
   const [transfers, setTransfer] = useState([]);
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      id: email,
-    },
-  };
 
   useEffect(() => {
-    axios.get("http://localhost:5000/transactions", config).then((e) => {
-      setTransfer(e.data);
-      console.log(transfers);
-    });
-  }, []);
+    axios
+      .get("http://localhost:5000/transactions", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          id: email,
+        },
+      })
+      .then((e) => {
+        setTransfer(e.data);
+      });
+  }, [token, email]);
 
   return (
     <>
@@ -34,6 +34,7 @@ export default function Home() {
         <h2>Olá, {name}</h2>
         <img
           src={Out}
+          alt="img"
           onClick={() => {
             setToken("");
             setName("");
@@ -49,14 +50,14 @@ export default function Home() {
       )}
       <Footer>
         <button onClick={() => navigate("/newin")}>
-          <img src={Plus} />
+          <img src={Plus} alt="img" />
           <h2>
             Nova <br />
             entrada
           </h2>
         </button>
         <button onClick={() => navigate("/newout")}>
-          <img src={Minus} />
+          <img src={Minus} alt="img" />
           <h2>
             Nova <br />
             saída

@@ -1,8 +1,7 @@
-import styled from "styled-components";
-import { useState, useContext } from "react";
 import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Context from "../../../Context/context";
+import styled from "styled-components";
 
 export default function Signup() {
   const navigate = useNavigate();
