@@ -33,7 +33,9 @@ export default function Signup() {
           setDisable(false);
         });
     } else {
-      return window.alert("Ambas as senhas devem coincidir");
+      window.alert("Ambas as senhas devem coincidir");
+      setDisable(false);
+      return;
     }
   }
 

@@ -4,6 +4,14 @@ import styled from "styled-components";
 import Context from "../../../Context/context";
 export default function Tranfers(props) {
   const { balance } = useContext(Context);
+  let balanceclass;
+  if (Number(balance) > 0) {
+    balanceclass = "true";
+  } else if (Number(balance) < 0) {
+    balanceclass = "false";
+  } else {
+    balanceclass = "neutral";
+  }
   console.log(props);
   return (
     <Container>
@@ -22,7 +30,7 @@ export default function Tranfers(props) {
       </ul>
       <Footer>
         <h2>SALDO:</h2>
-        <h3>{balance.toFixed(2)}</h3>
+        <h3 className={balanceclass}>{balance.toFixed(2)}</h3>
       </Footer>
     </Container>
   );
@@ -85,6 +93,14 @@ const Footer = styled.footer`
   }
   h3 {
     font-size: 1.7rem;
+  }
+  .true {
     color: #03ac00;
+  }
+  .false {
+    color: #c70000;
+  }
+  .neutral {
+    color: gray;
   }
 `;
